@@ -34,7 +34,7 @@ module.exports.findOneUser = (req, res) => {
 };
 
 module.exports.login = async (req, res) => {
-  const user = await User.findOne({ username: req.body.username });
+  const user = await User.findOne({ email: req.body.email });
 
   if (user === null) {
     return res.sendStatus(400);
