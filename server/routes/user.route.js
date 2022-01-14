@@ -1,7 +1,8 @@
 const UserController = require("../controllers/user.controller");
-module.exports = app => {
-    app.post("/api/register",UserController.register);
-    app.post("/api/login", UserController.login);
-    app.get("/api/all", UserController.all);
+module.exports = (app) => {
+  app.post("/api/register", UserController.register);
+  app.post("/api/login", UserController.login);
+  app.get("/api/all", UserController.all);
+  app.delete('/api/user/:id', UserController.deleteuser);
 
-  };
+};
