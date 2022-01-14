@@ -63,10 +63,14 @@ module.exports.login = async (req, res) => {
     .json({ msg: "success!" });
 };
 
-
-
 module.exports.deleteuser = (request, response) => {
   User.deleteOne({ _id: request.params.id })
-      .then(deleteConfirmation => response.json(deleteConfirmation))
-      .catch(err => response.json(err))
-}
+    .then((deleteConfirmation) => response.json(deleteConfirmation))
+    .catch((err) => response.json(err));
+};
+
+module.exports.logout = (req, res) => {
+  res.clearCookie("usertoken");
+  res.json({ msg: "User Logged Out" });
+  res.sendStatus(200);
+};
