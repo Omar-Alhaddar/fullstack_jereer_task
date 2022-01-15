@@ -1,6 +1,4 @@
 const Post = require("../models/post.model");
-const User = require("../models/user.model");
-
 module.exports.createNewPost = (req, res) => {
   Post.create(req.body)
     .then((newlyCreatedPost) => res.json({ post: newlyCreatedPost }))
@@ -12,4 +10,10 @@ module.exports.findAllPosts = (req, res) => {
     .populate("user")
     .then((posts) => res.json(posts))
     .catch((err) => res.json({ message: "Something went wrong", error: err }));
+};
+
+module.exports.deletepost = (request, response) => {
+  Post.deleteOne({ _id: request.params.id })
+    .then((deleteConfirmation) => response.json(deleteConfirmation))
+    .catch((err) => response.json(err));
 };
